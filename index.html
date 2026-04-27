@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>طلبك شنو - الكنز</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app" class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>طلبك شنو - الكنز</h1>
+      <nav>
+        <button id="btn-new" class="btn primary">طلب جديد</button>
+        <button id="btn-myorders" class="btn">طلباتي</button>
+        <button id="btn-admin" class="btn">لوحة التحكم</button>
+      </nav>
+    </header>
+
+    <!-- Views -->
+    <section id="view-home" class="view active">
+      <div class="hero card">
+        <h2>مرحباً بكم في نظام طلبات قرية الكنز</h2>
+        <p>أرسل طلبك بسهولة وسنتواصل معك لمتابعته.</p>
+        <button id="start-order" class="btn primary large">طلب جديد</button>
+      </div>
+    </section>
+
+    <section id="view-order" class="view">
+      <form id="order-form" class="card form" autocomplete="off">
+        <h2>إنشاء طلب جديد</h2>
+        <label>الاسم
+          <input type="text" id="name" required />
+        </label>
+        <label>رقم الهاتف
+          <input type="tel" id="phone" required placeholder="مثال: 0912345678" />
+        </label>
+        <label>الفئة
+          <select id="category" required>
+            <option value="">اختر الفئة</option>
+            <option>بقالة</option>
+            <option>حلويات</option>
+            <option>خضروات</option>
+            <option>مواشي</option>
+            <option>أخرى</option>
+          </select>
+        </label>
+        <label>تفاصيل الطلب
+          <textarea id="details" rows="4" placeholder="اكتب تفاصيل الطلب"></textarea>
+        </label>
+        <label>صورة (اختياري)
+          <input type="file" id="image" accept="image/*" />
+        </label>
+
+        <fieldset class="fieldset-inline">
+          <legend>هل تعرف المبلغ؟</legend>
+          <label><input type="radio" name="knowPrice" value="yes" checked /> نعم</label>
+          <label><input type="radio" name="knowPrice" value="no" /> لا</label>
+        </fieldset>
+
+        <label id="price-label">رقم العملية (إن وُجد)
+          <input type="text" id="transaction" placeholder="رقم العملية أو الفاتورة" />
+        </label>
+
+        <div id="bank-info" class="note hidden" aria-hidden="true">
+          عند معرفة السعر — رقم الحساب: <strong>4054558</strong> بنك الخرطوم — باسم: <strong>مجاهد عبدالسلام</strong>
+        </div>
+
+        <p id="no-price-note" class="note hidden">سيتم التواصل معك عند معرفة المبلغ</p>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">إرسال الطلب</button>
+          <button type="button" id="cancel-order" class="btn">إلغاء</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="view-notification" class="view">
+      <div id="notification-card" class="card notification success">
+        <!-- populated dynamically -->
+      </div>
+      <div class="card">
+        <button id="to-home" class="btn">العودة للرئيسية</button>
+      </div>
+    </section>
+
+    <section id="view-myorders" class="view">
+      <div class="card">
+        <h2>استعلام عن طلباتي</h2>
+        <label>ادخل رقم الهاتف
+          <input type="tel" id="lookup-phone" placeholder="رقم الهاتف" />
+        </label>
+        <div class="form-actions">
+          <button id="lookup-btn" class="btn primary">بحث</button>
+          <button id="lookup-clear" class="btn">مسح</button>
+        </div>
+      </div>
+      <div id="myorders-list"></div>
+    </section>
+
+    <section id="view-admin" class="view">
+      <div class="card admin-top">
+        <h2>لوحة التحكم - عرض جميع الطلبات</h2>
+        <div class="admin-actions">
+          <button id="refresh-orders" class="btn">تحديث</button>
+        </div>
+      </div>
+      <div id="admin-list"></div>
+    </section>
+
+    <footer class="footer">
+      <small>© طلبك شنو - الكنز — نظام طلبات لقرية الكنز</small>
+    </footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
